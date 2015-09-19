@@ -24,6 +24,13 @@ angular
     $scope.workLat = null;
     $scope.workLng = null;
 
+    $scope.work = 1;
+    $scope.grocery_or_supermarket = 1;
+    $scope.hospital = 1;
+    $scope.bar = 1;
+    $scope.gym = 1;
+    $scope.school = 1;
+
     var initialCenter = {
       latitude: -23.5534084,
       longitude: -46.6577078
