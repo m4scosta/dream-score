@@ -48,7 +48,7 @@
 
                         <input class="form-control input-lg" style="width: 50%" placeholder="Vila Madalena, São Paulo - SP" type="text" ng-model="chosenPlace" />
 
-                        <span class="input-group-btn"><a class="btn btn-lg btn-primary" href="#/search/{{ chosenPlace }}">OK</a></span>
+                        <span class="input-group-btn"><a class="btn btn-lg btn-primary" href="#/search/{{ chosenPlace }}" ng-disabled="!chosenPlace">OK</a></span>
                     </div>
                 </form>
             </div>
