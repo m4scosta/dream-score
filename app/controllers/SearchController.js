@@ -108,6 +108,7 @@ angular
             marker.siteUrl = element.siteUrl;
             marker.thumbnail = element.thumbnails[0];
             marker.salePrice = element.salePrice;
+            marker.rentPrice = element.rentPrice;
             marker.legend = element.legend;
             marker.coords = { latitude: element.latitude, longitude: element.longitude };
             marker.options = {

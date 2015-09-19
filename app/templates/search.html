@@ -92,7 +92,8 @@
                                                 <img ng-src="{{ marker.thumbnail }}" class="img-responsive">
                                             </div>
                                             <div class="col-lg-9">
-                                                <h4>{{ marker.salePrice|currency : 'R$ ' }}</h4>
+                                                <h4 ng-if="marker.salePrice">Venda: {{ marker.salePrice|currency : 'R$ ' }}</h4>
+                                                <h4 ng-if="marker.rentPrice">Aluguel: {{ marker.rentPrice|currency : 'R$ ' }}</h4>
                                                 <p>{{ marker.legend }}</p>
                                             </div>
                                         </div>

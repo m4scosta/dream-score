@@ -8,7 +8,7 @@
 
 angular
   .module('App')
-  .controller('AppController', AppController)
+  .controller('AppController', AppController);
 
   AppController.$inject = ['$scope'];
 
@@ -19,8 +19,8 @@ angular
    */
   function AppController($scope) {
     $scope.chosenCity = '';
-    $scope.selectTransaction = '';
-    $scope.propertyTypeSelector = '';
+    $scope.selectTransaction = 'VENTA';
+    $scope.propertyTypeSelector = 'RESIDENCIAL_APART';
   }
 
 })();
