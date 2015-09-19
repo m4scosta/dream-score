@@ -8,9 +8,9 @@ angular
   ])
   .config(['$routeProvider', '$httpProvider',
     function ($routeProvider, $httpProvider) {
-      // $httpProvider.defaults.withCredentials = true;
-      // $httpProvider.defaults.useXDomain = true;
-      // delete $httpProvider.defaults.headers.common['X-Requested-With'];
+      $httpProvider.defaults.withCredentials = false;
+      $httpProvider.defaults.useXDomain = true;
+      delete $httpProvider.defaults.headers.common['X-Requested-With'];
       $routeProvider
         .when('/', {
           templateUrl: 'app/templates/home.html',

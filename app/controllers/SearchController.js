@@ -19,20 +19,25 @@ angular
    */
   function SearchController($scope, $http, $routeParams, uiGmapGoogleMapApi) {
     $scope.loc = $routeParams.location;
-
     var initialCenter = {
       latitude: -23.5534084,
       longitude: -46.6577078
     };
-    $scope.map = { center: initialCenter, zoom: 15 };
-    $scope.circles = [
+
+    $http.get('http://houserank.felipevr.com/geocode?name=' + $scope.loc).then(
+      function(response) {
+        var lat = response.data.lat;
+        var lng = response.data.lng;
+        var initialCenter = {
+          latitude: lat,
+          longitude: lng
+        };
+        $scope.map = { center: initialCenter, zoom: 13 };
+        $scope.circles = [
       {
         id: 0,
-        center: {
-          latitude: -23.5534084,
-          longitude: -46.6577078
-        },
-        radius: 500,
+        center: initialCenter,
+        radius: 2000,
         stroke: {
             color: '#08B21F',
             weight: 2,
@@ -50,6 +55,10 @@ angular
         control: {}
       }
     ];
+
+      }
+    );
+
 
     $scope.applyFilters= function() {
       $scope.markers = [
