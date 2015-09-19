@@ -1,9 +1,46 @@
 <script src='https://maps.googleapis.com/maps/api/js?sensor=false'></script>
-<div>
-	<div class="row" style="height: 100%;">
-		<div class="col-lg-6">asdf</div>
-		<div class="col-lg-6">
-			<ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
-		</div>
-	</div>
+
+<div class="container" style="margin-left: 0px; margin-right: 0px;">
+<div class="row">
+    <div class="col-lg-6">
+        <div class="row">
+            <h3 style="margin-left: 15px;">{{ loc }}</h3>
+        </div>
+        <hr>
+        <div class="row">
+            <div id="filters">
+                <h4>Filtros</h4>
+                <div class="clearfix">
+                    <button ng-click="applyFilters()" class="btn btn-primary pull-right">Aplicar</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div id="listings">
+                <h2 ng-if="markers.length">{{ markers.length }} imóveis</h2>
+                <div class="row">
+                    <div class="col-lg-12" ng-repeat="marker in markers">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">{{ marker.id }}</h3>
+                            </div>
+                            <div class="panel-body">
+                                <p>marker lat: {{ marker.coords.latitude }}</p>
+                                <p>marker long: {{ marker.coords.longitude }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6" style="padding-right: 0;padding-left: 0px;">
+        <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+        <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id" ng-repeat="marker in markers"></ui-gmap-marker>
+        <ui-gmap-circle ng-repeat="c in circles track by c.id" center="c.center" stroke="c.stroke" fill="c.fill" radius="c.radius"
+                visible="c.visible" geodesic="c.geodesic" editable="c.editable" draggable="c.draggable" clickable="c.clickable" control="c.control"></ui-gmap-circle>
+    </ui-gmap-google-map>
+</ui-gmap-marker>
+</div>
+</div>
 </div>

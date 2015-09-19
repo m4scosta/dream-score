@@ -32,4 +32,22 @@ h1 {
   margin-top:7%;
 }
 
-.angular-google-map-container { height: 900px; }
+.angular-google-map-container {
+  height: 800px;
+  min-width: 100%;
+}
+
+#filters {
+  padding: 30px;
+}
+
+#listings {
+  background: #f1f5f9;
+  padding: 30px;
+}
+
+.marker-labels {
+  background: #ffffff;
+  padding: 5px;
+  border: 1px solid red;
+}

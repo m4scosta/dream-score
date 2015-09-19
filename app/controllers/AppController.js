@@ -18,7 +18,6 @@ angular
    * @memberOf Controllers
    */
   function AppController($scope) {
-    $scope.chosenCity = '';
   }
 
 })();

@@ -16,7 +16,7 @@ angular
           templateUrl: 'app/templates/home.html',
           controller: 'AppController'
         })
-        .when('/search', {
+        .when('/search/:location', {
           templateUrl: 'app/templates/search.html',
           controller: 'SearchController'
         })
