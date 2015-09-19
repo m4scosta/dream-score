@@ -19,6 +19,8 @@ angular
    */
   function SearchController($scope, $http, $routeParams, uiGmapGoogleMapApi) {
     $scope.loc = $routeParams.location;
+    $scope.workLat = null;
+    $scope.workLng = null;
 
     var initialCenter = {
       latitude: -23.5534084,
@@ -27,6 +29,7 @@ angular
 
     $http.get('http://houserank.felipevr.com/geocode?name=' + $scope.loc).then(
       function(response) {
+        loadPopovers();
         var lat = response.data.lat;
         var lng = response.data.lng;
         var initialCenter = {
@@ -64,12 +67,12 @@ angular
       var el = $scope.markers[id];
       $scope.map = { center: {latitude: el.coords.latitude, longitude: el.coords.longitude }, zoom: 13 };
       el.options.animation = '1';
-    }
+    };
 
     $scope.hoverOut = function(id) {
       var el = $scope.markers[id];
       el.options.animation = '0';
-    }
+    };
 
     $scope.applyFilters= function() {
       var dict = {
@@ -79,7 +82,14 @@ angular
         gym: $scope.gym,
         school: $scope.school
       };
-      $http.get('http://177.8.106.72/HouseRank/public/search?x=' + $scope.c.center.latitude + '&y=' + $scope.c.center.longitude + '&r=' + $scope.c.radius + '&types=grocery_or_supermarket,hospital,bar,gym,school&weights=' + $scope.grocery_or_supermarket + ',' + $scope.hospital + ',' + $scope.bar + ',' + $scope.gym + ',' + $scope.school).then(
+
+      var url = 'http://177.8.106.72/HouseRank/public/search?x=' + $scope.c.center.latitude + '&y=' + $scope.c.center.longitude + '&r=' + $scope.c.radius + '&types=grocery_or_supermarket,hospital,bar,gym,school&weights=' + $scope.grocery_or_supermarket + ',' + $scope.hospital + ',' + $scope.bar + ',' + $scope.gym + ',' + $scope.school;
+
+      if ($scope.workLat && $scope.workLng) {
+        url += "&wx=" +  $scope.workLat + "&wy=" + $scope.workLng + "&wp=" + $scope.work;
+      }
+
+      $http.get(url).then(
         function(response) {
           var markers = [];
           response.data.forEach(function(element, index){
@@ -100,9 +110,37 @@ angular
             markers.push(marker);
             $scope.markers = markers;
           });
-        }
+        });
+    };
+
+    $scope.chooseWorkLocation = function () {
+      $http.get('http://houserank.felipevr.com/geocode?name=' + $scope.workLocation).then(
+          function(response) {
+            $scope.workLat = response.data.lat;
+            $scope.workLng = response.data.lng;
+            var workMarker = {};
+            workMarker.id = 999;
+            workMarker.coords = { latitude: response.data.lat, longitude: response.data.lng };
+            workMarker.options = {
+              draggable: false,
+              labelAnchor: "20 70",
+              labelContent: "Trabalho",
+              labelClass: "marker-labels"
+            };
+            $scope.workMarker = workMarker;
+            $("#myModal").modal('hide');
+          }
       );
     };
+
+    function loadPopovers() {
+      $('#work-pref, #hosp-rel-pref')
+          .on('hidden.bs.popover', function (e) {
+            $(this).off('hidden.bs.popover');
+            $(this).popover('destroy');
+          })
+          .popover('show');
+    }
 
   }
 
