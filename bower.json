@@ -17,6 +17,7 @@
     "angular": "~1.4.0",
     "angular-resource": "~1.4.0",
     "angular-route": "~1.4.0",
-    "angular-google-maps": "latest"
+    "angular-google-maps": "latest",
+    "jquery": "~2.1.4"
   }
 }
