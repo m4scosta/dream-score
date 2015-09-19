@@ -8,17 +8,17 @@
 
 angular
   .module('App')
-  .controller('HomeController', HomeController)
+  .controller('AppController', AppController)
 
-  HomeController.$inject = ['$scope'];
+  AppController.$inject = ['$scope'];
 
   /**
-   * @namespace HomeController
+   * @namespace AppController
    * @desc Controller for the chapter route
    * @memberOf Controllers
    */
-  function HomeController($scope) {
-    console.log("OK");
+  function AppController($scope) {
+    $scope.chosenCity = '';
   }
 
 })();

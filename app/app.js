@@ -3,7 +3,8 @@
 angular
   .module('App', [
     'ngRoute',
-    'ngResource'
+    'ngResource',
+    'uiGmapgoogle-maps'
   ])
   .config(['$routeProvider', '$httpProvider',
     function ($routeProvider, $httpProvider) {
@@ -11,9 +12,13 @@ angular
       // $httpProvider.defaults.useXDomain = true;
       // delete $httpProvider.defaults.headers.common['X-Requested-With'];
       $routeProvider
-        .when('/home', {
+        .when('/', {
           templateUrl: 'app/templates/home.html',
-          controller: 'HomeController'
+          controller: 'AppController'
+        })
+        .when('/search', {
+          templateUrl: 'app/templates/search.html',
+          controller: 'SearchController'
         })
         .otherwise({
           redirectTo: '/'
