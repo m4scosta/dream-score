@@ -17,7 +17,7 @@ angular
           templateUrl: 'app/templates/home.html',
           controller: 'AppController'
         })
-        .when('/search/:location', {
+        .when('/search/:location/:selectTransaction/:propertyTypeSelector', {
           templateUrl: 'app/templates/search.html',
           controller: 'SearchController'
         })

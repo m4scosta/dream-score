@@ -19,6 +19,8 @@ angular
    */
   function SearchController($scope, $http, $routeParams, uiGmapGoogleMapApi) {
     $scope.loc = $routeParams.location;
+    $scope.selectTransaction = $routeParams.selectTransaction;
+    $scope.propertyTypeSelector = $routeParams.propertyTypeSelector;
     $scope.workLat = null;
     $scope.workLng = null;
 
@@ -83,7 +85,7 @@ angular
         school: $scope.school
       };
 
-      var url = 'http://177.8.106.72/HouseRank/public/search?x=' + $scope.c.center.latitude + '&y=' + $scope.c.center.longitude + '&r=' + $scope.c.radius + '&types=grocery_or_supermarket,hospital,bar,gym,school&weights=' + $scope.grocery_or_supermarket + ',' + $scope.hospital + ',' + $scope.bar + ',' + $scope.gym + ',' + $scope.school;
+      var url = 'http://177.8.106.72/HouseRank/public/search?x=' + $scope.c.center.latitude + '&y=' + $scope.c.center.longitude + '&r=' + $scope.c.radius + '&types=grocery_or_supermarket,hospital,bar,gym,school&weights=' + $scope.grocery_or_supermarket + ',' + $scope.hospital + ',' + $scope.bar + ',' + $scope.gym + ',' + $scope.school + '&business=' + $scope.selectTransaction;
 
       if ($scope.workLat && $scope.workLng) {
         url += "&wx=" +  $scope.workLat + "&wy=" + $scope.workLng + "&wp=" + $scope.work;
