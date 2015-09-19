@@ -4,11 +4,11 @@
  */
 (function(){
 
-'use strict';
+  'use strict';
 
-angular
-  .module('App')
-  .controller('SearchController', SearchController)
+  angular
+      .module('App')
+      .controller('SearchController', SearchController)
 
   SearchController.$inject = ['$scope', '$http', '$routeParams', 'uiGmapGoogleMapApi'];
 
@@ -19,6 +19,9 @@ angular
    */
   function SearchController($scope, $http, $routeParams, uiGmapGoogleMapApi) {
     $scope.loc = $routeParams.location;
+    $scope.workLocation = "";
+    $scope.workLat = null;
+    $scope.workLng = null;
 
     var initialCenter = {
       latitude: -23.5534084,
@@ -26,39 +29,39 @@ angular
     };
 
     $http.get('http://houserank.felipevr.com/geocode?name=' + $scope.loc).then(
-      function(response) {
-        var lat = response.data.lat;
-        var lng = response.data.lng;
-        var initialCenter = {
-          latitude: lat,
-          longitude: lng
-        };
-        $scope.map = { center: initialCenter, zoom: 13 };
-        $scope.circles = [
-          {
-            id: 0,
-            center: { latitude: lat,
-          longitude: lng},
-            radius: 2500,
-            stroke: {
+        function(response) {
+          loadPopovers();
+          var lat = response.data.lat;
+          var lng = response.data.lng;
+          var initialCenter = {
+            latitude: lat,
+            longitude: lng
+          };
+          $scope.map = { center: initialCenter, zoom: 13 };
+          $scope.circles = [
+            {
+              id: 0,
+              center: { latitude: lat,
+                longitude: lng},
+              radius: 2500,
+              stroke: {
                 color: '#08B21F',
                 weight: 2,
                 opacity: 1
-            },
-            fill: {
+              },
+              fill: {
                 color: '#08B21F',
                 opacity: 0.1
-            },
-            geodesic: true,
-            draggable: true,
-            clickable: true,
-            editable: true,
-            visible: true,
-            control: {}
-          }
-        ];
-
-      }
+              },
+              geodesic: true,
+              draggable: true,
+              clickable: true,
+              editable: true,
+              visible: true,
+              control: {}
+            }
+          ];
+        }
     );
 
     $scope.hoverIn = function(id) {
@@ -115,6 +118,30 @@ angular
         }
       ];
     };
+
+    $scope.chooseWorkLocation = function () {
+      $http.get('http://houserank.felipevr.com/geocode?name=' + $scope.workLocation).then(
+          function(response) {
+            $scope.workLat = response.data.lat;
+            $scope.workLng = response.data.lng;
+
+            $('#modal-inputs').hide();
+            $('#work-spinner').show();
+
+            window.setTimeout("$('#myModal').modal('hide'); $('#work-spinner').hide(); $('#modal-inputs').show()", 1000);
+          }
+      );
+    };
+
+    function loadPopovers() {
+      $('#work-pref, #hosp-rel-pref')
+          .on('hidden.bs.popover', function (e) {
+            $(this).off('hidden.bs.popover');
+            $(this).popover('destroy');
+          })
+          .popover('show');
+      $('#work-spinner').hide();
+    }
 
   }
 

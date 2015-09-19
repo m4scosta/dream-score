@@ -17,11 +17,12 @@
 
                     <div class="row">
 
-                        <div class="panel panel-default col-md-2 col-xs-5 panel-filter" style="padding: 0; margin-left: 15px">
+                        <div id="work-pref" data-toggle="popover" data-placement="top" data-content="Adicione o local do seu trabalho" class="panel panel-default col-md-2 col-xs-5 panel-filter" style="padding: 0; margin-left: 15px">
+                            <button data-toggle="modal" data-target="#myModal" style="color: white; background-color: black; border-radius: 50%; position: absolute; top: -10px; right: -10px"><span class="fa fa-plus"></span></button>
                             <div class="panel-heading filter-heading text-center">
                                 <span class="fa fa-briefcase fa-3x"></span>
                                 <p>Trabalho</p>
-                                <input type="number" name="relevancy" class="form-control" min="1" max="5" value="1" style="padding-right: 8px"/>
+                                <input ng-disabled="!(workLat || workLng)" type="number" name="relevancy" class="form-control" min="1" max="5" value="1" style="padding-right: 8px"/>
                             </div>
                         </div>
 
@@ -37,7 +38,7 @@
                             <div class="panel-heading filter-heading text-center">
                                 <span class="fa fa-hospital-o fa-3x"></span>
                                 <p>Hospital</p>
-                                <input type="number" name="relevancy" class="form-control" min="1" max="5" value="1" style="padding-right: 8px"/>
+                                <input id="hosp-rel-pref" data-toggle="popover" data-placement="bottom" data-content="Informe a importância de cada área" type="number" name="relevancy" class="form-control" min="1" max="5" value="1" style="padding-right: 8px"/>
                             </div>
                         </div>
 
@@ -48,6 +49,7 @@
                                 <input type="number" name="relevancy" class="form-control" min="1" max="5" value="1" style="padding-right: 8px"/>
                             </div>
                         </div>
+
 
                         <div class="panel panel-default col-md-2 col-xs-5 panel-filter" style="padding: 0; margin-left: 15px">
                             <div class="panel-heading filter-heading text-center">
@@ -108,5 +110,29 @@
             </ui-gmap-google-map>
             </ui-gmap-marker>
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <form class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <span class="fa fa-briefcase fa-2x"></span>
+                        <h3 class="modal-title" id="myModalLabel" style="display: inline">
+                            Adicionar local do trabalho
+                        </h3>
+                    </div>
+                    <div class="modal-body clearfix text-center">
+                        <span id="work-spinner" class="fa fa-spinner fa-spinner-animated fa-4x"></span>
+                        <div id="modal-inputs">
+                            <input ng-model="workLocation" type="text" class="form-control" placeholder="Vila Mariana, São Paulo, SP" />
+                            <br/>
+                            <button ng-disabled="!workLocation" type="button" class="btn btn-default pull-right" ng-click="chooseWorkLocation()">Confirmar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
     </div>
 </div>
