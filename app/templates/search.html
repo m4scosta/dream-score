@@ -4,12 +4,51 @@
     <div class="row">
         <div class="col-lg-7">
             <div class="row">
-                <h3 style="margin-left: 15px;padding-top: 8px;">{{ loc }}</h3>
+                <form class="col-md-offset-1 col-md-10" style="padding-top: 15px">
+                    <div class="input-group row" style="text-align:center;margin:0 auto;">
+
+                        <select class="form-control input-lg" style="width: 25%;" ng-model="selectTransaction">
+                            <option class="item" value="VENTA" selected="selected">Comprar</option>
+                            <option class="item" value="RENTA">Alugar</option>
+                            <!--<option class="item" value="NEW">Imóveis Novos</option>-->
+                        </select>
+
+                        <select class="form-control input-lg" style="width: 25%" ng-model="propertyTypeSelector">
+                            <optgroup label="Residencial">
+                                <option value="RESIDENCIAL_APART" selected="selected">Apartamento</option>
+                                <option value="RESIDENCIAL_HOME">Casa</option>
+                                <option value="RESIDENCIAL_FINCA">Chácara</option>
+                                <option value="RESIDENCIAL_CONDO">Casa de Condomínio</option>
+                                <option value="RESIDENCIAL_FLAT">Flat</option>
+                                <option value="RESIDENCIAL_LOTE">Lote/Terreno</option>
+                                <option value="RESIDENCIAL_SOBRADO">Sobrado</option>
+                                <option value="RESIDENCIAL_COBERTURA">Cobertura</option>
+                                <option value="RESIDENCIAL_KITNET">Kitnet</option>
+                            </optgroup>
+
+                            <optgroup label="Comercial">
+                                <option value="COMERCIAL_CONSULTORIO">Consultório</option>
+                                <option value="COMERCIAL_EDIRES">Edifício residencial</option>
+                                <option value="COMERCIAL_OFFICE">Sala comercial</option>
+                                <option value="COMERCIAL_AGRI">Fazenda/Sítio</option>
+                                <option value="COMERCIAL_BODEGA">Galpão/Depósito/Armazém</option>
+                                <option value="COMERCIAL_EDICOM">Imóvel comercial</option>
+                                <option value="COMERCIAL_LOCAL">Loja</option>
+                                <option value="COMERCIAL_LOTE">Lote/Terreno</option>
+                                <option value="COMERCIAL_BUSINESS">Ponto comercial</option>
+                            </optgroup>
+                        </select>
+
+                        <input class="form-control input-lg" style="width: 50%" placeholder="Vila Madalena, São Paulo - SP" type="text" ng-model="loc" />
+
+                        <span class="input-group-btn"><a class="btn btn-lg btn-primary" href="#/search/{{ loc }}/{{ selectTransaction }}/{{ propertyTypeSelector }}" ng-disabled="!loc">OK</a></span>
+                    </div>
+                </form>
             </div>
 
             <div class="row">
                 <div id="filters">
-                    <h3>O que voçê prefere ter proximo à sua casa dos sonhos?</h3>
+                    <h3>O que você prefere ter proximo à sua casa dos sonhos?</h3>
 
                     <br/><br/>
 
