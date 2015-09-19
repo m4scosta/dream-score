@@ -4,11 +4,7 @@
     <div class="row">
         <div class="col-lg-7">
             <div class="row">
-                <h3 style="margin-left: 15px;">{{ loc }}</h3>
-            </div>
-
-            <div class="row">
-                <h3 style="margin-left: 15px;">Preço</h3>
+                <h3 style="margin-left: 15px;padding-top: 8px;">{{ loc }}</h3>
             </div>
 
             <div class="row">
@@ -21,7 +17,7 @@
                             <div class="panel-heading filter-heading text-center">
                                 <span class="fa fa-briefcase fa-3x"></span>
                                 <p>Trabalho</p>
-                                <input type="number" name="relevancy" class="form-control" min="1" max="5" value="1" style="padding-right: 8px"/>
+                                <input type="number" ng-model="work" name="relevancy" class="form-control" min="1" max="5" value="1" style="padding-right: 8px"/>
                             </div>
                         </div>
 
@@ -29,7 +25,7 @@
                             <div class="panel-heading filter-heading text-center">
                                 <span class="fa fa-shopping-cart fa-3x"></span>
                                 <p>Mercado</p>
-                                <input type="number" name="relevancy" class="form-control" min="1" max="5" value="1" style="padding-right: 8px"/>
+                                <input type="number" ng-model="grocery_or_supermarket" name="relevancy" class="form-control" min="1" max="5" value="1" style="padding-right: 8px"/>
                             </div>
                         </div>
 
@@ -37,7 +33,7 @@
                             <div class="panel-heading filter-heading text-center">
                                 <span class="fa fa-hospital-o fa-3x"></span>
                                 <p>Hospital</p>
-                                <input type="number" name="relevancy" class="form-control" min="1" max="5" value="1" style="padding-right: 8px"/>
+                                <input type="number" ng-model="hospital" name="relevancy" class="form-control" min="1" max="5" value="1" style="padding-right: 8px"/>
                             </div>
                         </div>
 
@@ -45,7 +41,7 @@
                             <div class="panel-heading filter-heading text-center">
                                 <span class="fa fa-glass fa-3x"></span>
                                 <p>Bar/Balada</p>
-                                <input type="number" name="relevancy" class="form-control" min="1" max="5" value="1" style="padding-right: 8px"/>
+                                <input type="number" ng-model="bar" name="relevancy" class="form-control" min="1" max="5" value="1" style="padding-right: 8px"/>
                             </div>
                         </div>
 
@@ -53,7 +49,7 @@
                             <div class="panel-heading filter-heading text-center">
                                 <span class="fa  fa-child fa-3x"></span>
                                 <p>Academia</p>
-                                <input type="number" name="relevancy" class="form-control" min="1" max="5" value="1" style="padding-right: 8px"/>
+                                <input type="number" ng-model="gym" name="relevancy" class="form-control" min="1" max="5" value="1" style="padding-right: 8px"/>
                             </div>
                         </div>
 
@@ -61,7 +57,7 @@
                             <div class="panel-heading filter-heading text-center">
                                 <span class="fa fa-graduation-cap fa-3x"></span>
                                 <p>Escola</p>
-                                <input type="number" name="relevancy" class="form-control" min="1" max="5" value="1" style="padding-right: 8px"/>
+                                <input type="number" ng-model="school" name="relevancy" class="form-control" min="1" max="5" value="1" style="padding-right: 8px"/>
                             </div>
                         </div>
 
@@ -76,26 +72,30 @@
                 </div>
             </div>
             <div class="row">
-                <div id="listings">
-                    <div ng-if="markers.length">
+                <div id="listings" ng-if="markers.length">
+                    <div>
                         <h2 ng-if="markers.length">{{ markers.length }} imóveis</h2>
                         <br>
                         <div class="row">
                             <div class="col-lg-12" ng-repeat="marker in markers">
                                 <div class="panel panel-default" ng-mouseover="hoverIn(marker.id)" ng-mouseleave="hoverOut(marker.id)">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">{{ marker.id }}</h3>
+                                        <h3 class="panel-title"><a href="{{ marker.siteUrl }}" target="_blank">{{ marker.title }}</a></h3>
                                     </div>
                                     <div class="panel-body">
-                                        <p>marker lat: {{ marker.coords.latitude }}</p>
-                                        <p>marker long: {{ marker.coords.longitude }}</p>
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <img src="{{ marker.thumbnail }}" class="img-responsive">
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <h4>{{ marker.salePrice|currency : 'R$ ' }}</h4>
+                                                <p>{{ marker.legend }}</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div ng-if="!markers.length">
-                        <h3>Complete os filtros</h3>
                     </div>
                 </div>
             </div>
@@ -103,7 +103,7 @@
         <div class="col-lg-5" id="map-wrapper" style="padding-right: 0;padding-left: 0px;">
             <ui-gmap-google-map id="map" center='map.center' zoom='map.zoom'>
                 <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id" ng-repeat="marker in markers"></ui-gmap-marker>
-                <ui-gmap-circle ng-repeat="c in circles track by c.id" center="c.center" stroke="c.stroke" fill="c.fill" radius="c.radius"
+                <ui-gmap-circle center="c.center" stroke="c.stroke" fill="c.fill" radius="c.radius"
                                 visible="c.visible" geodesic="c.geodesic" editable="c.editable" draggable="c.draggable" clickable="c.clickable" control="c.control"></ui-gmap-circle>
             </ui-gmap-google-map>
             </ui-gmap-marker>

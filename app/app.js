@@ -4,7 +4,8 @@ angular
   .module('App', [
     'ngRoute',
     'ngResource',
-    'uiGmapgoogle-maps'
+    'uiGmapgoogle-maps',
+    'angular-loading-bar'
   ])
   .config(['$routeProvider', '$httpProvider',
     function ($routeProvider, $httpProvider) {

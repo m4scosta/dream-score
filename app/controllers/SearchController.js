@@ -34,7 +34,7 @@ angular
           longitude: lng
         };
         $scope.map = { center: initialCenter, zoom: 13 };
-        $scope.circles = [
+        $scope.c =
           {
             id: 0,
             center: { latitude: lat,
@@ -55,8 +55,7 @@ angular
             editable: true,
             visible: true,
             control: {}
-          }
-        ];
+          };
 
       }
     );
@@ -73,47 +72,36 @@ angular
     }
 
     $scope.applyFilters= function() {
-      $scope.markers = [
-        {
-          id: 0,
-          coords: {
-            latitude: -23.5534084,
-            longitude: -46.6577078
-          },
-          options: {
-            draggable: false,
-            labelContent: "R$100",
-            labelAnchor: "20 70",
-            labelClass: "marker-labels"
-          }
-        },
-        {
-          id: 1,
-          coords: {
-            latitude: -23.5634084,
-            longitude: -46.6577078
-          },
-          options: {
-            draggable: false,
-            labelContent: "R$100",
-            labelAnchor: "20 70",
-            labelClass: "marker-labels"
-          }
-        },
-        {
-          id: 2,
-          coords: {
-            latitude: -23.5434084,
-            longitude: -46.6577078
-          },
-          options: {
-            draggable: false,
-            labelContent: "R$100",
-            labelAnchor: "20 70",
-            labelClass: "marker-labels"
-          }
+      var dict = {
+        grocery_or_supermarket: $scope.grocery_or_supermarket,
+        hospital: $scope.hospital,
+        bar: $scope.bar,
+        gym: $scope.gym,
+        school: $scope.school
+      };
+      $http.get('http://177.8.106.72/HouseRank/public/search?x=' + $scope.c.center.latitude + '&y=' + $scope.c.center.longitude + '&r=' + $scope.c.radius + '&types=grocery_or_supermarket,hospital,bar,gym,school&weights=' + $scope.grocery_or_supermarket + ',' + $scope.hospital + ',' + $scope.bar + ',' + $scope.gym + ',' + $scope.school).then(
+        function(response) {
+          var markers = [];
+          response.data.forEach(function(element, index){
+            var marker = {};
+            marker.id = index;
+            marker.title = element.title;
+            marker.siteUrl = element.siteUrl;
+            marker.thumbnail = element.thumbnails[0];
+            marker.salePrice = element.salePrice;
+            marker.legend = element.legend;
+            marker.coords = { latitude: element.latitude, longitude: element.longitude };
+            marker.options = {
+              draggable: false,
+              labelContent: "R$"+element.salePrice,
+              labelAnchor: "20 70",
+              labelClass: "marker-labels"
+            };
+            markers.push(marker);
+            $scope.markers = markers;
+          });
         }
-      ];
+      );
     };
 
   }
