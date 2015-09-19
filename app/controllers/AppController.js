@@ -19,6 +19,8 @@ angular
    */
   function AppController($scope) {
     $scope.chosenCity = '';
+    $scope.selectTransaction = 'VENTA';
+    $scope.propertyTypeSelector = 'RESIDENCIAL_APART';
   }
 
 })();

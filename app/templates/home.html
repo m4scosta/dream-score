@@ -1,64 +1,59 @@
 <div class="container-full">
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
     <div class="row">
-      <div class="col-lg-12 text-center v-center">
-        <h1>Onde você sonha morar?</h1>
-        <br><br>
-        <form class="col-lg-12">
-          <div class="input-group" style="width:340px;text-align:center;margin:0 auto;">
-            <input class="form-control input-lg" placeholder="Vila Madalena, São Paulo - SP" type="text" ng-model="chosenPlace">
-            <span class="input-group-btn"><a class="btn btn-lg btn-primary" type="button" href="#/search">OK</button></a>
-          </div>
-        </form>
-      </div>
+
+        <video loop autoplay style="width: 100%; height: 100%; float: left">
+            <source src="/media/background.mp4" type="video/mp4">
+        </video>
+
+        <div class="hidden-xs hidden-sm" style="height: 100px"></div>
+        <div class="hidden-xs hidden-lg" style="height: 50px"></div>
+
+        <div class="col-lg-12 text-center v-center" style="position: absolute; width: 100%;">
+            <div class="col-md-offset-2 col-md-8" style="padding: 25px; background-color: rgba(0, 0, 0, 0.1);">
+                <h1 style="color: white; text-shadow: 1px 5px 12px gray;">Onde você sonha morar?</h1>
+                <br />
+
+                <form>
+                    <div class="input-group row" style="text-align:center;margin:0 auto;">
+
+                        <select class="form-control input-lg" style="width: 25%;" ng-model="selectTransaction">
+                            <option class="item" value="VENTA" selected="selected">Comprar</option>
+                            <option class="item" value="RENTA">Alugar</option>
+                            <!--<option class="item" value="NEW">Imóveis Novos</option>-->
+                        </select>
+
+                        <select class="form-control input-lg" style="width: 25%" ng-model="propertyTypeSelector">
+                            <optgroup label="Residencial">
+                                <option value="RESIDENCIAL_APART" selected="selected">Apartamento</option>
+                                <option value="RESIDENCIAL_HOME">Casa</option>
+                                <option value="RESIDENCIAL_FINCA">Chácara</option>
+                                <option value="RESIDENCIAL_CONDO">Casa de Condomínio</option>
+                                <option value="RESIDENCIAL_FLAT">Flat</option>
+                                <option value="RESIDENCIAL_LOTE">Lote/Terreno</option>
+                                <option value="RESIDENCIAL_SOBRADO">Sobrado</option>
+                                <option value="RESIDENCIAL_COBERTURA">Cobertura</option>
+                                <option value="RESIDENCIAL_KITNET">Kitnet</option>
+                            </optgroup>
+                            <optgroup label="Comercial">
+                                <option value="COMERCIAL_CONSULTORIO">Consultório</option>
+                                <option value="COMERCIAL_EDIRES">Edifício residencial</option>
+                                <option value="COMERCIAL_OFFICE">Sala comercial</option>
+                                <option value="COMERCIAL_AGRI">Fazenda/Sítio</option>
+                                <option value="COMERCIAL_BODEGA">Galpão/Depósito/Armazém</option>
+                                <option value="COMERCIAL_EDICOM">Imóvel comercial</option>
+                                <option value="COMERCIAL_LOCAL">Loja</option>
+                                <option value="COMERCIAL_LOTE">Lote/Terreno</option>
+                                <option value="COMERCIAL_BUSINESS">Ponto comercial</option>
+                            </optgroup>
+                        </select>
+
+                        <input class="form-control input-lg" style="width: 50%" placeholder="Vila Madalena, São Paulo - SP" type="text" ng-model="chosenPlace" />
+
+                        <span class="input-group-btn"><a class="btn btn-lg btn-primary" href="#/search">OK</a></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+
     </div> <!-- /row -->
-
-
-    <br><br><br><br><br>
-
-  </div> <!-- /container full -->
-
-  <div class="container">
-
-    <hr>
-
-    <div class="row">
-      <div class="col-md-4">
-        <div class="panel panel-default">
-          <div class="panel-heading"><h3>Hello.</h3></div>
-          <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
-            Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
-            dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan.
-            Aliquam in felis sit amet augue.
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="panel panel-default">
-          <div class="panel-heading"><h3>Hello.</h3></div>
-          <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
-            Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
-            dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan.
-            Aliquam in felis sit amet augue.
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="panel panel-default">
-          <div class="panel-heading"><h3>Hello.</h3></div>
-          <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
-            Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
-            dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan.
-            Aliquam in felis sit amet augue.
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
+</div> <!-- /container full -->
