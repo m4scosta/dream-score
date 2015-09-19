@@ -17,19 +17,25 @@
         </div>
         <div class="row">
             <div id="listings">
-                <h2 ng-if="markers.length">{{ markers.length }} imóveis</h2>
-                <div class="row">
-                    <div class="col-lg-12" ng-repeat="marker in markers">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">{{ marker.id }}</h3>
-                            </div>
-                            <div class="panel-body">
-                                <p>marker lat: {{ marker.coords.latitude }}</p>
-                                <p>marker long: {{ marker.coords.longitude }}</p>
+                <div ng-if="markers.length">
+                    <h2 ng-if="markers.length">{{ markers.length }} imóveis</h2>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-12" ng-repeat="marker in markers">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">{{ marker.id }}</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <p>marker lat: {{ marker.coords.latitude }}</p>
+                                    <p>marker long: {{ marker.coords.longitude }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div ng-if="!markers.length">
+                    <h3>Complete os filtros</h3>
                 </div>
             </div>
         </div>

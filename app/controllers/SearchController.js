@@ -10,15 +10,16 @@ angular
   .module('App')
   .controller('SearchController', SearchController)
 
-  SearchController.$inject = ['$scope', '$rootScope', '$routeParams', 'uiGmapGoogleMapApi'];
+  SearchController.$inject = ['$scope', '$http', '$routeParams', 'uiGmapGoogleMapApi'];
 
   /**
    * @namespace SearchController
    * @desc Controller for the chapter route
    * @memberOf Controllers
    */
-  function SearchController($scope, $rootScope, $routeParams, uiGmapGoogleMapApi) {
+  function SearchController($scope, $http, $routeParams, uiGmapGoogleMapApi) {
     $scope.loc = $routeParams.location;
+
     var initialCenter = {
       latitude: -23.5534084,
       longitude: -46.6577078
